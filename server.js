@@ -19,7 +19,7 @@ app.get('/status', (req, res) => {
 // --- ENDPOINT /auth ---
 app.get('/auth', (req, res) => {
   // Qui SmartThings verrà rediretto al login Innova (simulato)
-  res.send('Redirecting to Innova login...');
+  res.send('Redirecting to Innova login... Visita https://innova-smartthings.onrender.com/callback dopo il login.');
 });
 
 // --- ENDPOINT /callback ---
@@ -39,15 +39,4 @@ app.post('/command', (req, res) => {
     fancoilState.setpoint = value;
   }
 
-  console.log('Comando ricevuto:', req.body);
-  res.json({ status: 'ok', fancoilState });
-});
-
-// --- SERVER ATTIVO ---
-app.get('/', (req, res) => {
-  res.send('Server SmartThings Fancoil INNOVA attivo!');
-});
-
-app.listen(PORT, () => {
-  console.log(`Server SmartThings Fancoil INNOVA attivo su porta ${PORT}`);
-});
+  console.log('Comando
