@@ -1,19 +1,17 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(express.json());
-
-// Endpoint di test
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.send("Server SmartThings Fancoil INNOVA attivo!");
 });
 
-// Endpoint per lo stato del fancoil
-app.get("/status", (req, res) => {
-  res.json({ status: "OK" });
+// Simula login cloud Innova
+app.post('/auth', (req, res) => {
+  // qui si può memorizzare un token temporaneo
+  res.json({ token: "dummy-token" });
 });
 
-app.listen(port, () => {
-  console.log(`Server attivo su http://localhost:${port}`);
+// Comando fancoil
+app.post('/command', (req, res) => {
+  const { action, value } = req.body;
+  // es. action = "power", value = "on" oppure "temp", value = 22
+  console.log(`Ricevuto comando: ${action} -> ${value}`);
+  res.send(`Comando ricevuto: ${action} -> ${value}`);
 });
